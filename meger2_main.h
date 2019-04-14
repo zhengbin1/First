@@ -5,6 +5,7 @@
 #include <QLabel>
 #include <QDesktopWidget>
 #include <QGuiApplication>
+#include <QScreen>
 
 #include "clickablelabel.h"
 #include "labeltitlename.h"

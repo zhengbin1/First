@@ -14,6 +14,7 @@ public:
 
     void paintEvent(QPaintEvent *event);
     void showEvent(QShowEvent *event);
+    void mousePressEvent(QMouseEvent *);
 
 signals:
 

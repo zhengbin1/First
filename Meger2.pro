@@ -29,16 +29,21 @@ SOURCES += \
         meger2_main.cpp \
     clickablelabel.cpp \
     labeltitlename.cpp \
-    caddserver.cpp
+    caddserver.cpp \
+    addserverdialog.cpp \
+    addserverdialogtitle.cpp
 
 HEADERS += \
         meger2_main.h \
     clickablelabel.h \
     labeltitlename.h \
-    caddserver.h
+    caddserver.h \
+    addserverdialog.h \
+    addserverdialogtitle.h
 
 FORMS += \
-        meger2_main.ui
+        meger2_main.ui \
+    addserverdialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

@@ -1,9 +1,9 @@
 #include "caddserver.h"
+#include "addserverdialog.h"
 
 
 CAddServer::CAddServer(QWidget *parent) : QWidget(parent)
 {
-
 
 }
 
@@ -21,4 +21,10 @@ void CAddServer::showEvent(QShowEvent *event)
     QLabel *addServerPic = new QLabel(this);
     addServerPic -> setPixmap(pixmap);
     addServerPic -> show();
+}
+
+void CAddServer::mousePressEvent(QMouseEvent *)
+{
+    AddServerDialog *addServerDialog = new AddServerDialog();
+    addServerDialog -> show();
 }

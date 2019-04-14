@@ -1,15 +1,13 @@
-#ifndef LABELTITLENAME_H
-#define LABELTITLENAME_H
+#ifndef ADDSERVERDIALOGTITLE_H
+#define ADDSERVERDIALOGTITLE_H
+
 #include <QLabel>
 #include <QMouseEvent>
 
-class LabelTitleName : public QLabel
+class AddServerDialogTitle : public QLabel
 {
-    Q_OBJECT
-
 public:
-    explicit LabelTitleName(QWidget* parent = Q_NULLPTR);
-    ~LabelTitleName();
+    explicit AddServerDialogTitle(QWidget *parent);
 
     void mousePressEvent(QMouseEvent* event);
     void mouseMoveEvent(QMouseEvent* event);
@@ -22,4 +20,4 @@ private:
     QWidget *label_parent;
 };
 
-#endif // LABELTITLENAME_H
+#endif // ADDSERVERDIALOGTITLE_H
