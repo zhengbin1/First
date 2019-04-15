@@ -15,7 +15,7 @@ void AddServerDialogTitle::mousePressEvent(QMouseEvent *event)
         //获得鼠标的初始位置
         mouseStartPoint = event -> globalPos();
         //获得窗口的初始位置
-        windowTopLeftPoint = this -> frameGeometry().topLeft();
+        windowTopLeftPoint = label_parent -> frameGeometry().topLeft();
     }
 }
 
@@ -26,7 +26,7 @@ void AddServerDialogTitle::mouseMoveEvent(QMouseEvent *event)
         //获得鼠标移动的距离
         QPoint distance = event -> globalPos() - mouseStartPoint;
         //改变窗口的位置
-        this -> move(windowTopLeftPoint + distance);
+        label_parent -> move(windowTopLeftPoint + distance);
     }
 }
 

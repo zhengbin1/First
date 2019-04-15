@@ -24,7 +24,6 @@ class Meger2_main : public QDialog
 public:
     explicit Meger2_main(QWidget *parent = nullptr);
     ~Meger2_main();
-    void init();
 
 private slots:
     void on_label_title_close_click();

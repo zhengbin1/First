@@ -26,5 +26,6 @@ void CAddServer::showEvent(QShowEvent *event)
 void CAddServer::mousePressEvent(QMouseEvent *)
 {
     AddServerDialog *addServerDialog = new AddServerDialog();
+    addServerDialog -> setWindowModality(Qt::ApplicationModal);
     addServerDialog -> show();
 }

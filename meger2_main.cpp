@@ -58,11 +58,7 @@ Meger2_main::~Meger2_main()
     delete ui;
 }
 
-void Meger2_main::on_label_title_close_click(){
-    QApplication::exit();
-}
-
-void Meger2_main::init()
+void Meger2_main::on_label_title_close_click()
 {
-
+    QApplication::exit();
 }
