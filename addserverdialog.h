@@ -4,8 +4,9 @@
 #include <QDialog>
 #include <QFile>
 #include <QFileInfo>
-#include <QStack>
+#include <QStringList>
 #include <QTextStream>
+#include <QMessageBox>
 
 namespace Ui {
 class AddServerDialog;
@@ -21,12 +22,17 @@ public:
 
 private:
     Ui::AddServerDialog *ui;
-    QStack<QString> ServerStack;  // 栈方式存放服务器地址
+    QStringList ServerInfoList;  // 存放服务器地址
+    QWidget *m_parent;
+
 
 private slots:
     void on_label_title_close_click();
     void on_OkButton_click();
     void on_CancelButton_click();
+
+signals:
+    void sendStringList(QStringList);
 };
 
 #endif // ADDSERVERDIALOG_H

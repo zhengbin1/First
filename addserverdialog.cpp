@@ -2,6 +2,7 @@
 #include "ui_addserverdialog.h"
 #include "addserverdialogtitle.h"
 #include "clickablelabel.h"
+
 #include <QDebug>
 
 AddServerDialog::AddServerDialog(QWidget *parent) :
@@ -9,6 +10,8 @@ AddServerDialog::AddServerDialog(QWidget *parent) :
     ui(new Ui::AddServerDialog)
 {
     ui->setupUi(this);
+
+    this -> m_parent = parent;
 
     setWindowFlags(Qt::CustomizeWindowHint | Qt::FramelessWindowHint | windowFlags());
     setStyleSheet("background-color: #FFFFFF;");
@@ -53,25 +56,38 @@ void AddServerDialog::on_label_title_close_click()
 
 void AddServerDialog::on_OkButton_click()
 {
-    QString tmpFileName( ui -> ServerName -> text() + "##" + ui -> ServerIP -> text());
-    ServerStack.push(tmpFileName);
+    if(ui -> ServerIP -> text().isEmpty()){
+        QMessageBox::warning(this, "服务器IP名称为空", "请输入服务器IP！", "返回");
+        return;
+    }
 
-    qDebug() << tmpFileName;
-    qDebug() << tmpFileName.split("##");
-    qDebug() << ServerStack.size();
+    if(ui -> ServerName -> text() . isEmpty()){
+        QMessageBox::warning(this, "服务器名称为空", "请输入服务器名称！", "返回");
+        return;
+    }
+
+    QString tmpFileName( ui -> ServerName -> text() + "##" + ui -> ServerIP -> text());
+    ServerInfoList.append(tmpFileName);
 
     QString fileFullName("./ServerBlockList.txt");
 
     QFile file(fileFullName);
     if(file.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate))
     {
-        QTextStream in(&file);
-        while (ServerStack.isEmpty())
-        {
-            in << ServerStack.top() << "\n";
+        QTextStream inStream(&file);
+
+        int ListSize = ServerInfoList.size();
+
+        for (int i = ListSize - 1; i >= 0; i --) {
+            inStream << ServerInfoList.at(i) << "\r\n";
         }
+
         file.close();
     }
+
+    emit sendStringList(ServerInfoList);
+
+    this -> close();
 }
 
 void AddServerDialog::on_CancelButton_click()

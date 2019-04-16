@@ -6,6 +6,8 @@
 #include <QPainter>
 #include <QLabel>
 
+#include "addserverdialog.h"
+
 class CAddServer : public QWidget
 {
     Q_OBJECT
@@ -16,9 +18,14 @@ public:
     void showEvent(QShowEvent *event);
     void mousePressEvent(QMouseEvent *);
 
+private:
+    AddServerDialog *addServerDialog;
+
 signals:
+    void sendStringList(QStringList);
 
 public slots:
+    void recvStringList(QStringList);
 };
 
 #endif // CADDSERVER_H

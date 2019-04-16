@@ -31,7 +31,8 @@ SOURCES += \
     labeltitlename.cpp \
     caddserver.cpp \
     addserverdialog.cpp \
-    addserverdialogtitle.cpp
+    addserverdialogtitle.cpp \
+    cshowserverblock.cpp
 
 HEADERS += \
         meger2_main.h \
@@ -39,7 +40,8 @@ HEADERS += \
     labeltitlename.h \
     caddserver.h \
     addserverdialog.h \
-    addserverdialogtitle.h
+    addserverdialogtitle.h \
+    cshowserverblock.h
 
 FORMS += \
         meger2_main.ui \

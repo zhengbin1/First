@@ -44,13 +44,13 @@ Meger2_main::Meger2_main(QWidget *parent) :
 
     connect(label_title_close, SIGNAL(clicked()), this, SLOT(on_label_title_close_click()));
 
-    CAddServer *add_server = new CAddServer(this);  // 添加服务器
-    add_server -> resize(300, 280);
+    add_server = new CAddServer(this);  // 添加服务器
     add_server -> move(50, 80);
-    add_server -> setStyleSheet("background-color: #242631;");
-    QLabel *addServer = new QLabel(add_server);
-    addServer -> setText("<p style=\"color:#fff;font-size:18px;text-align:center;\">添加服务器<p>");
-    addServer -> move(100, 240);
+
+    connect(add_server, SIGNAL(sendStringList(QStringList)), this, SLOT(recvStringList(QStringList)));
+
+    CShowServerBlock *showServerBlock1 = new CShowServerBlock(this);
+    showServerBlock1 -> move(200, 200);
 }
 
 Meger2_main::~Meger2_main()
@@ -61,4 +61,15 @@ Meger2_main::~Meger2_main()
 void Meger2_main::on_label_title_close_click()
 {
     QApplication::exit();
+}
+
+void Meger2_main::paintEvent(QPaintEvent *event)
+{
+
+}
+
+void Meger2_main::recvStringList(QStringList serverStringList)
+{
+    ServerInfoList = serverStringList;
+    qDebug() << ServerInfoList;
 }

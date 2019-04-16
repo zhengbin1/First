@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/images">
         <file>source/images/add_server.png</file>
+        <file>source/images/show_server.png</file>
     </qresource>
 </RCC>
