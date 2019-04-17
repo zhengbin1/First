@@ -3,19 +3,13 @@
 
 #include <QDialog>
 #include <QLabel>
-#include <QDesktopWidget>
 #include <QGuiApplication>
 #include <QScreen>
-#include <QHBoxLayout>
 #include <QStack>
-#include <QScrollArea>
 
 #include "clickablelabel.h"
 #include "labeltitlename.h"
-#include "caddserver.h"
-#include "cshowserverblock.h"
-
-#include <QDebug>
+#include "meger2_main_content.h"
 
 namespace Ui {
 class Meger2_main;
@@ -32,13 +26,9 @@ public:
 
 private slots:
     void on_label_title_close_click();
-    void recvStringList(QStringList);
 
 private:
     Ui::Meger2_main *ui;
-    QStringList ServerInfoList;  // 存放服务器地址
-    CAddServer *add_server;  // 添加服务器
-    QStack<CShowServerBlock *> ServerInfoStack;
 };
 
 #endif // MEGER2_MAIN_H
