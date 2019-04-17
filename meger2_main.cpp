@@ -27,7 +27,7 @@ Meger2_main::Meger2_main(QWidget *parent) :
     LabelTitleName *label_title_name = new LabelTitleName(this);  // 标题栏
 
     QString strText("Meger V2.0 登录");
-    QString setStyleHtml = "<p style=\"line-height:35px;height:50px;color:#fff;font-size:15px;margin-left:15px;\">%1<p>";
+    QString setStyleHtml = "<p style=\"line-height:35px;height:50px;color:#fff;font-size:15px;margin-left:15px;\">%1</p>";
     strText = setStyleHtml.arg(strText);
     label_title_name ->setText(strText);
     label_title_name ->setStyleSheet("background-color: #333541;");
@@ -36,7 +36,7 @@ Meger2_main::Meger2_main(QWidget *parent) :
     label_title_name ->move(0,0);
 
     ClickableLabel *label_title_close = new ClickableLabel(this);  // 关闭按钮
-    QString setStyleHtml2 = "<p style=\"line-height:40px;height:50px;color:#fff;font-size:20px;text-align:center;\"><b>×</b><p>";
+    QString setStyleHtml2 = "<p style=\"line-height:30px;height:50px;color:#fff;font-size:20px;text-align:center;\"><b>×</b></p>";
     label_title_close ->setText(setStyleHtml2);
     label_title_close ->setStyleSheet("background-color: #333541;");
     label_title_close ->resize(50, 50);
@@ -45,12 +45,9 @@ Meger2_main::Meger2_main(QWidget *parent) :
     connect(label_title_close, SIGNAL(clicked()), this, SLOT(on_label_title_close_click()));
 
     add_server = new CAddServer(this);  // 添加服务器
-    add_server -> move(50, 80);
+    add_server -> move(50, 100);
 
     connect(add_server, SIGNAL(sendStringList(QStringList)), this, SLOT(recvStringList(QStringList)));
-
-    CShowServerBlock *showServerBlock1 = new CShowServerBlock(this);
-    showServerBlock1 -> move(200, 200);
 }
 
 Meger2_main::~Meger2_main()
@@ -65,11 +62,42 @@ void Meger2_main::on_label_title_close_click()
 
 void Meger2_main::paintEvent(QPaintEvent *event)
 {
+    int startX = 50;
+    int startY = 100;
 
+    int nextX = startX;
+    int nextY = startY;
+
+    ServerInfoStack.clear();
+
+    for (int i = 0; i < ServerInfoList.size(); i ++)
+    {
+        CShowServerBlock *showServerBlock = new CShowServerBlock(this);
+        showServerBlock -> setNameAndIP(ServerInfoList.at(i));
+        ServerInfoStack.push(showServerBlock);
+    }
+
+    int j = 0;
+    while (!ServerInfoStack.isEmpty())
+    {
+        CShowServerBlock *showServerBlock = ServerInfoStack.pop();
+        showServerBlock -> move(nextX, nextY);
+        showServerBlock -> show();
+        nextX += 320;
+        j ++;
+        int tmpNum = j / 4;
+        qDebug() << tmpNum;
+        if (tmpNum != 0)
+        {
+            nextX = startX;
+            nextY += 250;
+        }
+    }
+
+    add_server -> move(nextX, nextY);
 }
 
 void Meger2_main::recvStringList(QStringList serverStringList)
 {
     ServerInfoList = serverStringList;
-    qDebug() << ServerInfoList;
 }
