@@ -15,7 +15,6 @@ public:
     explicit CAddServer(QWidget *parent = nullptr);
 
     void paintEvent(QPaintEvent *event);
-    void showEvent(QShowEvent *event);
     void mousePressEvent(QMouseEvent *);
 
 private:

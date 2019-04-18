@@ -11,8 +11,8 @@ public:
     explicit LabelTitleName(QWidget* parent = Q_NULLPTR);
     ~LabelTitleName();
 
-    void mousePressEvent(QMouseEvent* event);
-    void mouseMoveEvent(QMouseEvent* event);
+    void mousePressEvent(QMouseEvent *event);
+    void mouseMoveEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
 
 private:

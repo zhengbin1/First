@@ -9,8 +9,8 @@ class AddServerDialogTitle : public QLabel
 public:
     explicit AddServerDialogTitle(QWidget *parent);
 
-    void mousePressEvent(QMouseEvent* event);
-    void mouseMoveEvent(QMouseEvent* event);
+    void mousePressEvent(QMouseEvent *event);
+    void mouseMoveEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
 
 private:

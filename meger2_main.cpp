@@ -45,9 +45,15 @@ Meger2_main::Meger2_main(QWidget *parent) :
 
     connect(label_title_close, SIGNAL(clicked()), this, SLOT(on_label_title_close_click()));
 
-    Meger2_main_content *MegerMainContent = new Meger2_main_content(this);
-    MegerMainContent -> resize(Meger2_main_width, Meger2_main_height - 50);
-    MegerMainContent -> move(0, 50);
+    MegerMainContent = new Meger2_main_content(this);
+    MegerMainContent -> resize(Meger2_main_width - 20, Meger2_main_height);
+
+    QScrollArea *scrollArea = new QScrollArea(this);
+    scrollArea -> setFrameShape(QFrame::NoFrame);
+    // scrollArea -> setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Maximum);
+    scrollArea -> setWidget(MegerMainContent);
+    scrollArea -> resize(Meger2_main_width, Meger2_main_height + 20);
+    scrollArea -> move(0, 50);
 }
 
 Meger2_main::~Meger2_main()
@@ -58,9 +64,4 @@ Meger2_main::~Meger2_main()
 void Meger2_main::on_label_title_close_click()
 {
     QApplication::exit();
-}
-
-void Meger2_main::paintEvent(QPaintEvent *event)
-{
-
 }
