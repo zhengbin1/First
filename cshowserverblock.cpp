@@ -6,26 +6,14 @@ CShowServerBlock::CShowServerBlock(QWidget *parent) : QWidget(parent)
     resize(290, 220);
     setStyleSheet("background-color: #ffffff;");
 
-    deleteIcon = new QImage;
-    editIcon = new QImage;
 
-    deleteLabel = new QLabel(this);
-    editLabel = new QLabel(this);
-
-    deleteIcon -> load(":/images/source/images/delete.png");
-    editIcon -> load(":/images/source/images/edit.png");
-
-    editLabel -> resize(editIcon -> width(), editIcon -> height());
-    editLabel -> setAttribute(Qt::WA_TranslucentBackground);
-    editLabel -> setPixmap(QPixmap::fromImage(*editIcon));
+    editLabel = new CEditLabel(this);
     editLabel -> move(230, 130);
 
-    deleteLabel -> resize(deleteIcon -> width(), deleteIcon -> height());
-    deleteLabel -> setAttribute(Qt::WA_TranslucentBackground);
-    deleteLabel -> setPixmap(QPixmap::fromImage(*deleteIcon));
+    deleteLabel = new CDeleteLabel(this);
     deleteLabel -> move(260, 130);
 
-    connect(deleteLabel, SIGNAL(mousePressEvent(QMouseEvent *)), this, SLOT(on_deleteLabel_click(QMouseEvent *)));
+    connect(deleteLabel, SIGNAL(deleteblock(int, QString)), this, SIGNAL(deleteblock(int, QString)));
 }
 
 void CShowServerBlock::paintEvent(QPaintEvent *)
@@ -37,11 +25,15 @@ void CShowServerBlock::paintEvent(QPaintEvent *)
     painter.drawPixmap(this -> rect(), pixmap);
 }
 
-void CShowServerBlock::setNameAndIP(QString ServerInfo)
+void CShowServerBlock::setNameAndIP(int id, QString ServerInfo)
 {
     QStringList tmpInfo = ServerInfo.split("##");
+
+    BlockID = id;
     m_ServerName = tmpInfo.at(0);
     m_ServerIP = tmpInfo.at(1);
+
+    deleteLabel -> setIDandServerInfo(id, ServerInfo);
 
     QLabel *ServerName = new QLabel(this);
     ServerName -> setStyleSheet("background-color: #FFFFFF;");
@@ -63,14 +55,6 @@ void CShowServerBlock::mousePressEvent(QMouseEvent *)
 
 CShowServerBlock::~CShowServerBlock()
 {
-    delete deleteIcon;
-    delete editIcon;
-
     delete deleteLabel;
     delete editLabel;
-}
-
-void CShowServerBlock::on_deleteLabel_click(QMouseEvent *)
-{
-    qDebug() << "on_deleteLabel_click";
 }

@@ -5,32 +5,34 @@
 #include <QLabel>
 #include <QPainter>
 
+#include "cdeletelabel.h"
+#include "ceditlabel.h"
+
+
 class CShowServerBlock : public QWidget
 {
     Q_OBJECT
 
 public:
     explicit CShowServerBlock(QWidget *parent = nullptr);
-    void setNameAndIP(QString);
+    ~CShowServerBlock();
+
+    void setNameAndIP(int, QString);
     void paintEvent(QPaintEvent *);
     void mousePressEvent(QMouseEvent *);
 
 private:
+    int BlockID;
     QString m_ServerName;
     QString m_ServerIP;
 
-    QImage *deleteIcon;
-    QImage *editIcon;
-
-    QLabel *deleteLabel;
-    QLabel *editLabel;
-
-    ~CShowServerBlock();
+    CEditLabel *editLabel;
+    CDeleteLabel *deleteLabel;
 
 signals:
+    void deleteblock(int, QString);
 
 public slots:
-    void on_deleteLabel_click(QMouseEvent *);
 };
 
 #endif // CSHOWSERVERBLOCK_H

@@ -61,7 +61,7 @@ void AddServerDialog::on_OkButton_click()
         return;
     }
 
-    if(ui -> ServerName -> text() . isEmpty()){
+    if(ui -> ServerName -> text().isEmpty()){
         QMessageBox::warning(this, "服务器名称为空", "请输入服务器名称！", "返回");
         return;
     }

@@ -20,6 +20,7 @@ signals:
 
 public slots:
     void recvStringList(QStringList);
+    void delServerBlock(int, QString);
 
 private:
     QStringList ServerInfoList;  // 存放服务器地址

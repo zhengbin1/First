@@ -21,7 +21,7 @@ CAddServer::CAddServer(QWidget *parent) : QWidget(parent)
     addServerPic -> show();
 }
 
-void CAddServer::paintEvent(QPaintEvent *event)
+void CAddServer::paintEvent(QPaintEvent *)
 {
     QStyleOption opt;
     opt.init(this);
