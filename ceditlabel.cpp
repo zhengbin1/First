@@ -18,7 +18,7 @@ void CEditLabel::paintEvent(QPaintEvent *)
 
 void CEditLabel::mousePressEvent(QMouseEvent *)
 {
-    qDebug() << "eeeeeeeeeeeee";
+
 }
 
 CEditLabel::~CEditLabel()

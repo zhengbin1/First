@@ -66,26 +66,26 @@ void AddServerDialog::on_OkButton_click()
         return;
     }
 
-    QString tmpFileName( ui -> ServerName -> text() + "##" + ui -> ServerIP -> text());
-    ServerInfoList.append(tmpFileName);
+    QString ServerInfo( ui -> ServerName -> text() + "##" + ui -> ServerIP -> text());  // 存放服务器地址
 
-    QString fileFullName("./ServerBlockList.txt");
 
-    QFile file(fileFullName);
-    if(file.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate))
-    {
-        QTextStream inStream(&file);
+//    QString fileFullName("./ServerBlockList.txt");
 
-        int ListSize = ServerInfoList.size();
+//    QFile file(fileFullName);
+//    if(file.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate))
+//    {
+//        QTextStream inStream(&file);
 
-        for (int i = ListSize - 1; i >= 0; i --) {
-            inStream << ServerInfoList.at(i) << "\r\n";
-        }
+//        int ListSize = ServerInfoList.size();
 
-        file.close();
-    }
+//        for (int i = ListSize - 1; i >= 0; i --) {
+//            inStream << ServerInfoList.at(i) << "\r\n";
+//        }
 
-    emit sendStringList(ServerInfoList);
+//        file.close();
+//    }
+
+    emit sendServerInfo(ServerInfo);
 
     this -> close();
 }

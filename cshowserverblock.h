@@ -29,6 +29,9 @@ private:
     CEditLabel *editLabel;
     CDeleteLabel *deleteLabel;
 
+    QPixmap *BackgroundPixmap;
+    QPainter *BackgroundPainter;
+
 signals:
     void deleteblock(int, QString);
 

@@ -13,7 +13,7 @@ CAddServer::CAddServer(QWidget *parent) : QWidget(parent)
     addServer -> move(100, 240);
 
     addServerDialog = new AddServerDialog(this);
-    connect(addServerDialog, SIGNAL(sendStringList(QStringList)), this, SLOT(recvStringList(QStringList)));
+    connect(addServerDialog, SIGNAL(sendServerInfo(QString)), this, SIGNAL(sendServerInfo(QString)));
 
     QPixmap pixmap(":/images/source/images/add_server.png");
     QLabel *addServerPic = new QLabel(this);
@@ -33,9 +33,4 @@ void CAddServer::mousePressEvent(QMouseEvent *)
 {
     addServerDialog -> setWindowModality(Qt::ApplicationModal);
     addServerDialog -> show();
-}
-
-void CAddServer::recvStringList(QStringList serverInfoList)
-{
-    emit sendStringList(serverInfoList);
 }

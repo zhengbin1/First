@@ -7,14 +7,14 @@ Meger2_main_content::Meger2_main_content(QWidget *parent) : QWidget(parent)
     add_server = new CAddServer(this);  // 添加服务器
     add_server -> move(40, 40);
 
-    connect(add_server, SIGNAL(sendStringList(QStringList)), this, SLOT(recvStringList(QStringList)));
+    connect(add_server, SIGNAL(sendServerInfo(QString)), this, SLOT(recvStringList(QString)));
 
     Meger2_main_width = parent -> geometry().width();  // 主窗口宽度
 }
 
-void Meger2_main_content::recvStringList(QStringList serverStringList)
+void Meger2_main_content::recvStringList(QString serverInfo)
 {
-    ServerInfoList = serverStringList;
+    ServerInfoList.append(serverInfo);
 
     int startX = 40;
     int startY = 40;
@@ -22,7 +22,8 @@ void Meger2_main_content::recvStringList(QStringList serverStringList)
     int nextX = startX;
     int nextY = startY;
 
-    ServerInfoStack.clear();
+    qDeleteAll(ServerInfoStack.begin(), ServerInfoStack.end());
+    qDeleteAll(delServerInfoStack.begin(), delServerInfoStack.end());
 
     for (int i = 0; i < ServerInfoList.size(); i ++)
     {
@@ -32,6 +33,8 @@ void Meger2_main_content::recvStringList(QStringList serverStringList)
 
         connect(showServerBlock, SIGNAL(deleteblock(int, QString)), this, SLOT(delServerBlock(int, QString)));
     }
+
+    delServerInfoStack = ServerInfoStack;
 
     int j = 0;
     while (!ServerInfoStack.isEmpty())
@@ -62,6 +65,15 @@ void Meger2_main_content::delServerBlock(int id, QString ServerInfo)
     QString ServerName = tmpInfo.at(0);
     QString ServerIP = tmpInfo.at(1);
 
+    while (!delServerInfoStack.isEmpty())
+    {
+        CShowServerBlock *showServerBlock = delServerInfoStack.pop();
+        showServerBlock -> setAttribute(Qt::WA_DeleteOnClose, true);
+        showServerBlock -> close();
+        delete showServerBlock;
+        qDebug() << showServerBlock;
+    }
+
     ServerInfoList.removeAt(blockID);
 
     int startX = 40;
@@ -70,7 +82,8 @@ void Meger2_main_content::delServerBlock(int id, QString ServerInfo)
     int nextX = startX;
     int nextY = startY;
 
-    ServerInfoStack.clear();
+    qDeleteAll(ServerInfoStack.begin(), ServerInfoStack.end());
+    qDeleteAll(delServerInfoStack.begin(), delServerInfoStack.end());
 
     int i = 0;
     QStringList::const_iterator constIterator;
@@ -85,6 +98,7 @@ void Meger2_main_content::delServerBlock(int id, QString ServerInfo)
         i ++;
     }
 
+    delServerInfoStack = ServerInfoStack;
 
     int j = 0;
     while (!ServerInfoStack.isEmpty())

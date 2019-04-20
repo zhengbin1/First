@@ -21,10 +21,7 @@ private:
     AddServerDialog *addServerDialog;
 
 signals:
-    void sendStringList(QStringList);
-
-public slots:
-    void recvStringList(QStringList);
+    void sendServerInfo(QString);
 };
 
 #endif // CADDSERVER_H

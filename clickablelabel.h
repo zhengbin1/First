@@ -10,14 +10,14 @@ class ClickableLabel : public QLabel  // 扩展QLabel的点击事件
     Q_OBJECT
 
 public:
-    explicit ClickableLabel(QWidget* parent = Q_NULLPTR, Qt::WindowFlags f = Qt::WindowFlags());
+    explicit ClickableLabel(QWidget* parent = Q_NULLPTR);
     ~ClickableLabel();
 
 signals:
     void clicked();
 
 protected:
-    void mousePressEvent(QMouseEvent *event);
+    void mousePressEvent(QMouseEvent *);
 
 };
 

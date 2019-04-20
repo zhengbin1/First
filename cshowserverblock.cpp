@@ -20,9 +20,10 @@ void CShowServerBlock::paintEvent(QPaintEvent *)
 {
     //this -> setAutoFillBackground(true);
 
-    QPixmap pixmap = QPixmap(":/images/source/images/show_server.png").scaled(this -> size());
-    QPainter painter(this);
-    painter.drawPixmap(this -> rect(), pixmap);
+    BackgroundPixmap = new QPixmap(":/images/source/images/show_server.png");
+    BackgroundPixmap -> scaled(this -> size());
+    BackgroundPainter = new QPainter(this);
+    BackgroundPainter -> drawPixmap(this -> rect(), *BackgroundPixmap);
 }
 
 void CShowServerBlock::setNameAndIP(int id, QString ServerInfo)
@@ -57,4 +58,7 @@ CShowServerBlock::~CShowServerBlock()
 {
     delete deleteLabel;
     delete editLabel;
+
+    delete BackgroundPixmap;
+    delete BackgroundPainter;
 }
