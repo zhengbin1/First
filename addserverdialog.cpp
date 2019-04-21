@@ -3,7 +3,6 @@
 #include "addserverdialogtitle.h"
 #include "clickablelabel.h"
 
-#include <QDebug>
 
 AddServerDialog::AddServerDialog(QWidget *parent) :
     QDialog(parent),
@@ -68,22 +67,6 @@ void AddServerDialog::on_OkButton_click()
 
     QString ServerInfo( ui -> ServerName -> text() + "##" + ui -> ServerIP -> text());  // 存放服务器地址
 
-
-//    QString fileFullName("./ServerBlockList.txt");
-
-//    QFile file(fileFullName);
-//    if(file.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate))
-//    {
-//        QTextStream inStream(&file);
-
-//        int ListSize = ServerInfoList.size();
-
-//        for (int i = ListSize - 1; i >= 0; i --) {
-//            inStream << ServerInfoList.at(i) << "\r\n";
-//        }
-
-//        file.close();
-//    }
 
     emit sendServerInfo(ServerInfo);
 

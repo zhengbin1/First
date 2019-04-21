@@ -6,6 +6,7 @@
 #include <QGuiApplication>
 #include <QScreen>
 #include <QStack>
+#include <QPushButton>
 
 #include "caddserver.h"
 #include "cshowserverblock.h"
@@ -15,7 +16,8 @@ class Meger2_main_content : public QWidget
     Q_OBJECT
 public:
     explicit Meger2_main_content(QWidget *parent = nullptr);
-    // void paintEvent(QPaintEvent *);
+
+    void inputServerBlockList();
 
 signals:
 
