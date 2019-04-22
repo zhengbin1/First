@@ -10,6 +10,7 @@
 
 #include "caddserver.h"
 #include "cshowserverblock.h"
+#include "errormessagedialog.h"
 
 class Meger2_main_content : public QWidget
 {
