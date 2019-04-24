@@ -10,10 +10,6 @@ Meger2_main_content::Meger2_main_content(QWidget *parent) : QWidget(parent)
     connect(add_server, SIGNAL(sendServerInfo(QString)), this, SLOT(recvStringList(QString)));
 
     Meger2_main_width = parent -> geometry().width();  // 主窗口宽度
-
-    ErrorMessageDialog *p = new ErrorMessageDialog(this);
-    p -> setTextContent("服务器连接失败！");
-    p -> show();
 }
 
 void Meger2_main_content::recvStringList(QString serverInfo)
