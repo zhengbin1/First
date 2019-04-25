@@ -71,7 +71,64 @@ void CShowServerBlock::mousePressEvent(QMouseEvent *)
     if (tcpsocket -> waitForConnected(10000))
     {
         tcpsocket -> write(sendData);
-        tcpsocket -> flush();
+        if(tcpsocket -> waitForBytesWritten())
+        {
+            struct NET_PACKAGE_HEAD *pPackage = new struct NET_PACKAGE_HEAD;
+
+            tcpsocket -> read(reinterpret_cast<char *>(pPackage), sizeof(struct NET_PACKAGE_HEAD));
+
+            if(tcpsocket -> waitForReadyRead())
+            {
+                struct NET_PACKAGE_HEAD recvPackge;
+
+                memcpy(&recvPackge, pPackage, sizeof(struct NET_PACKAGE_HEAD));
+
+                qDebug() << "dwHeadFlag:" << QString::number(recvPackge.dwHeadFlag, 16);
+                qDebug() << "dwBobySize:" << recvPackge.dwBobySize;
+                qDebug() << "dwCmdType:" << recvPackge.dwCmdType;
+                qDebug() << "dwData:" << recvPackge.dwData;
+
+                if(recvPackge.dwBobySize > 0)
+                {
+                    QTextCodec *codeGBK = QTextCodec::codecForName("gbk");
+                    QTextCodec *codeUTF8 = QTextCodec::codecForName("UTF-8");
+
+                    QByteArray recvBuffer;
+
+                    recvBuffer = codeGBK -> fromUnicode(tcpsocket -> readAll());
+                    if(tcpsocket -> waitForReadyRead())
+                    {
+                        qDebug() << recvBuffer;
+
+                        QJsonParseError jsonerror;
+                        QJsonDocument doucment = QJsonDocument::fromJson(codeUTF8 -> fromUnicode(recvBuffer), &jsonerror);
+
+                        QStringList mediaItem;
+
+                        if (jsonerror.error == QJsonParseError::NoError) {
+                            if (doucment.isObject()) {
+                                QJsonObject object = doucment.object();
+                                QJsonValue jsonValue = object.value("media");
+                                QJsonArray jsonArray = jsonValue.toArray();
+
+                                qDebug() << jsonValue;
+
+                                for (int i = 0; i < jsonArray.size(); i ++)
+                                {
+                                    QString jsonLine = jsonArray.at(i).toString();
+                                    mediaItem << codeGBK -> fromUnicode(jsonLine);
+                                }
+
+                                QStringListModel *mediaListModel = new QStringListModel(this);
+                                mediaListModel -> setStringList(mediaItem);
+                            }
+                        }
+                    }
+                }
+
+                delete pPackage;
+            }
+        }
     }
     else
     {
@@ -84,60 +141,13 @@ void CShowServerBlock::mousePressEvent(QMouseEvent *)
         return;
     }
 
-    struct NET_PACKAGE_HEAD *pPackage = new struct NET_PACKAGE_HEAD;
 
-    tcpsocket -> read(reinterpret_cast<char *>(pPackage), sizeof(struct NET_PACKAGE_HEAD));
-    struct NET_PACKAGE_HEAD recvPackge;
-
-    memcpy(&recvPackge, pPackage, sizeof(struct NET_PACKAGE_HEAD));
-
-    qDebug() << "dwHeadFlag:" << QString::number(recvPackge.dwHeadFlag, 16);
-    qDebug() << "dwBobySize:" << recvPackge.dwBobySize;
-    qDebug() << "dwCmdType:" << recvPackge.dwCmdType;
-    qDebug() << "dwData:" << recvPackge.dwData;
-
-    if(recvPackge.dwBobySize > 0)
-    {
-        QTextCodec *codeGBK = QTextCodec::codecForName("gbk");
-        QTextCodec *codeUTF8 = QTextCodec::codecForName("UTF-8");
-
-        QByteArray recvBuffer;
-
-        recvBuffer = codeGBK -> fromUnicode(tcpsocket -> readAll());
-        qDebug() << recvBuffer;
-
-        QJsonParseError jsonerror;
-        QJsonDocument doucment = QJsonDocument::fromJson(codeUTF8 -> fromUnicode(recvBuffer), &jsonerror);
-
-        QStringList mediaItem;
-
-        if (jsonerror.error == QJsonParseError::NoError) {
-            if (doucment.isObject()) {
-                QJsonObject object = doucment.object();
-                QJsonValue jsonValue = object.value("media");
-                QJsonArray jsonArray = jsonValue.toArray();
-
-                qDebug() << jsonValue;
-
-                for (int i = 0; i < jsonArray.size(); i ++) {
-                    QString jsonLine = jsonArray.at(i).toString();
-
-                    mediaItem << codeGBK -> fromUnicode(jsonLine);
-                }
-
-                QStringListModel *mediaListModel = new QStringListModel(this);
-                mediaListModel -> setStringList(mediaItem);
-            }
-        }
-    }
-
-    tcpsocket -> close();
-
-    delete pPackage;
 }
 
 CShowServerBlock::~CShowServerBlock()
 {
+    tcpsocket -> close();
+
     delete deleteLabel;
     delete editLabel;
 
