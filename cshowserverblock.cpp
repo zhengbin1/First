@@ -128,6 +128,9 @@ void CShowServerBlock::mousePressEvent(QMouseEvent *)
 
                 delete pPackage;
             }
+
+            meger2Content = new Meger2Content();
+            meger2Content -> show();
         }
     }
     else
@@ -140,8 +143,6 @@ void CShowServerBlock::mousePressEvent(QMouseEvent *)
         delete errorMessageDialog;
         return;
     }
-
-
 }
 
 CShowServerBlock::~CShowServerBlock()
@@ -153,4 +154,6 @@ CShowServerBlock::~CShowServerBlock()
 
     delete BackgroundPixmap;
     delete BackgroundPainter;
+
+    delete meger2Content;
 }

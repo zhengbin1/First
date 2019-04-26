@@ -16,6 +16,7 @@
 #include "cdeletelabel.h"
 #include "ceditlabel.h"
 #include "errormessagedialog.h"
+#include "meger2content.h"
 
 
 class CShowServerBlock : public QWidget
@@ -42,6 +43,8 @@ private:
     QPainter *BackgroundPainter;
 
     QTcpSocket *tcpsocket;
+
+    Meger2Content *meger2Content;
 
 signals:
     void deleteblock(int, QString);

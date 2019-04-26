@@ -38,7 +38,15 @@ SOURCES += \
     cdeletelabel.cpp \
     ceditlabel.cpp \
     errormessagedialogtitle.cpp \
-    errormessagedialog.cpp
+    errormessagedialog.cpp \
+    meger2content.cpp \
+    meger2tabbase.cpp \
+    setservertab.cpp \
+    setmediatab.cpp \
+    channelmanagetab.cpp \
+    resourcelist.cpp \
+    programattribute.cpp \
+    mediaattribute.cpp
 
 HEADERS += \
         meger2_main.h \
@@ -52,12 +60,21 @@ HEADERS += \
     cdeletelabel.h \
     ceditlabel.h \
     errormessagedialogtitle.h \
-    errormessagedialog.h
+    errormessagedialog.h \
+    meger2content.h \
+    meger2tabbase.h \
+    setservertab.h \
+    setmediatab.h \
+    channelmanagetab.h \
+    resourcelist.h \
+    programattribute.h \
+    mediaattribute.h
 
 FORMS += \
         meger2_main.ui \
     addserverdialog.ui \
-    errormessagedialog.ui
+    errormessagedialog.ui \
+    meger2content.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

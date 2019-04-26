@@ -12,9 +12,9 @@ void AddServerDialogTitle::mousePressEvent(QMouseEvent *event)
     if(event -> button() == Qt::LeftButton)
     {
         isDrag = true;
-        //获得鼠标的初始位置
+        // 获得鼠标的初始位置
         mouseStartPoint = event -> globalPos();
-        //获得窗口的初始位置
+        // 获得窗口的初始位置
         windowTopLeftPoint = label_parent -> frameGeometry().topLeft();
     }
 }
@@ -23,9 +23,9 @@ void AddServerDialogTitle::mouseMoveEvent(QMouseEvent *event)
 {
     if(isDrag == true)
     {
-        //获得鼠标移动的距离
+        // 获得鼠标移动的距离
         QPoint distance = event -> globalPos() - mouseStartPoint;
-        //改变窗口的位置
+        // 改变窗口的位置
         label_parent -> move(windowTopLeftPoint + distance);
     }
 }
