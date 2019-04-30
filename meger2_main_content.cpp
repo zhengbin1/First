@@ -14,7 +14,23 @@ Meger2_main_content::Meger2_main_content(QWidget *parent) : QWidget(parent)
 
 void Meger2_main_content::recvStringList(QString serverInfo)
 {
-    ServerInfoList.append(serverInfo);
+
+    if(ServerInfoList.indexOf(serverInfo) == -1){
+        ServerInfoList.append(serverInfo);
+    } else {
+        QStringList tmpInfo = serverInfo.split("##");
+
+        QString ServerName = tmpInfo.at(0);
+        QString ServerIP = tmpInfo.at(1);
+
+        ErrorMessageDialog *errorMessageDialog = new ErrorMessageDialog(this);
+        errorMessageDialog -> setTitleName("重复提醒");
+        errorMessageDialog -> setTextContent(ServerName + " 和 " + ServerIP + " 已经存在！");
+        errorMessageDialog -> exec();
+
+        delete errorMessageDialog;
+        return;
+    }
 
     int startX = 40;
     int startY = 40;

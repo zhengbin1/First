@@ -6,6 +6,10 @@
 #include <QPainter>
 #include <QLabel>
 
+#include "resourcelist.h"
+#include "programattribute.h"
+#include "mediaattribute.h"
+
 class SetMediaTab : public QWidget
 {
     Q_OBJECT
@@ -22,9 +26,14 @@ private:
     QLabel *programAttribute;
     QLabel *mediaAttribute;
 
+    ResourceList *resourceListTab;
+    ProgramAttribute *programAttributeTab;
+    MediaAttribute *mediaAttributeTab;
+
 signals:
 
 public slots:
+    void LinkActivated(QString);
 };
 
 #endif // SETMEDIATAB_H

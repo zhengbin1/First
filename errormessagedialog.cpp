@@ -13,10 +13,8 @@ ErrorMessageDialog::ErrorMessageDialog(QWidget *parent) :
 
     int AddServerDialogWidth = geometry().width();
 
-    ErrorMessageDialogTitle *errorMessageDialogTitle = new ErrorMessageDialogTitle(this);  // 标题栏
+    errorMessageDialogTitle = new ErrorMessageDialogTitle(this);  // 标题栏
 
-    QString strText("<p style=\"line-height:30px;height:40px;color:#fff;font-size:15px;margin-left:15px;\">连接提醒<p>");
-    errorMessageDialogTitle -> setText(strText);
     errorMessageDialogTitle -> setStyleSheet("background-color: #333541;");
     errorMessageDialogTitle -> setAlignment(Qt::AlignLeft);
     errorMessageDialogTitle -> resize(AddServerDialogWidth - 50, 40);
@@ -40,6 +38,7 @@ ErrorMessageDialog::ErrorMessageDialog(QWidget *parent) :
 ErrorMessageDialog::~ErrorMessageDialog()
 {
     delete ui;
+    delete errorMessageDialogTitle;
 }
 
 void ErrorMessageDialog::on_OkButton_click()
@@ -54,5 +53,10 @@ void ErrorMessageDialog::on_CancelButton_click()
 
 void ErrorMessageDialog::setTextContent(QString text)
 {
-    ui -> label_content ->setText("<p style=\"line-height:30px;height:30px;color:#000;font-size:16px;text-align:center;\">" + text + "<p>");
+    ui -> label_content -> setText("<p style=\"line-height:30px;height:30px;color:#000;font-size:16px;text-align:center;\">" + text + "<p>");
+}
+
+void ErrorMessageDialog::setTitleName(QString text)
+{
+    errorMessageDialogTitle -> setText("<p style=\"line-height:30px;height:40px;color:#fff;font-size:15px;margin-left:15px;\">" + text + "<p>");
 }

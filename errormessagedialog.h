@@ -18,10 +18,13 @@ public:
     explicit ErrorMessageDialog(QWidget *parent = nullptr);
     ~ErrorMessageDialog();
 
+    void setTitleName(QString);
     void setTextContent(QString);
 
 private:
     Ui::ErrorMessageDialog *ui;
+
+    ErrorMessageDialogTitle *errorMessageDialogTitle;
 
 private slots:
     void on_OkButton_click();

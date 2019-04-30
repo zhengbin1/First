@@ -2,12 +2,14 @@
 
 ResourceList::ResourceList(QWidget *parent) : QWidget(parent)
 {
-
+    all_button = new QPushButton(this);
+    all_button -> setStyleSheet("color:#FFFFFF;background-color:#5C6378;border:1px solid #989A9C;");
+    all_button -> resize(100, 50);
 }
 
 ResourceList::~ResourceList()
 {
-
+    delete all_button;
 }
 
 void ResourceList::paintEvent(QPaintEvent *e)

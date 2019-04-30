@@ -59,7 +59,7 @@ void Meger2TabBase::paintEvent(QPaintEvent *e)
     switch (tabnum) {
     case 10:
         setServerTab -> resize(Meger2_width - 20, Meger2_height - 60);
-        setServerTab -> move(10, 55);
+        setServerTab -> move(10, 50);
         setServerTab -> setStyleSheet("background-color: #41434E;");
         setServerTab -> show();
         setMediaTab -> hide();
@@ -67,7 +67,7 @@ void Meger2TabBase::paintEvent(QPaintEvent *e)
         break;
     case 11:
         setMediaTab -> resize(Meger2_width - 20, Meger2_height - 60);
-        setMediaTab -> move(10, 55);
+        setMediaTab -> move(10, 50);
         setMediaTab -> setStyleSheet("background-color: #41434E;");
         setServerTab -> hide();
         setMediaTab -> show();
@@ -75,7 +75,7 @@ void Meger2TabBase::paintEvent(QPaintEvent *e)
         break;
     case 12:
         channelManageTab -> resize(Meger2_width - 20, Meger2_height - 60);
-        channelManageTab -> move(10, 55);
+        channelManageTab -> move(10, 50);
         channelManageTab -> setStyleSheet("background-color: #41434E;");
         setServerTab -> hide();
         setMediaTab -> hide();
