@@ -46,7 +46,8 @@ SOURCES += \
     channelmanagetab.cpp \
     resourcelist.cpp \
     programattribute.cpp \
-    mediaattribute.cpp
+    mediaattribute.cpp \
+    refreshbutton.cpp
 
 HEADERS += \
         meger2_main.h \
@@ -68,7 +69,8 @@ HEADERS += \
     channelmanagetab.h \
     resourcelist.h \
     programattribute.h \
-    mediaattribute.h
+    mediaattribute.h \
+    refreshbutton.h
 
 FORMS += \
         meger2_main.ui \
