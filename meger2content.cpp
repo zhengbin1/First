@@ -63,6 +63,13 @@ Meger2Content::Meger2Content(QWidget *parent) :
     connect(label_title_close, SIGNAL(clicked()), this, SLOT(on_label_title_close_click()));
 
     meger2TabBase = new Meger2TabBase(this);
+    resourceListLeft = new ResourceListLeft(this);
+    resourceListLeft -> hide();
+
+    connect(meger2TabBase, SIGNAL(showSignal(int)), this, SLOT(showSlot(int)));
+
+    setMediaBottom = new SetMediaBottom(this);
+    setMediaBottom -> hide();
 }
 
 Meger2Content::~Meger2Content()
@@ -72,6 +79,10 @@ Meger2Content::~Meger2Content()
     delete label_title_name;
     delete label_title_max;
     delete label_title_close;
+
+    delete meger2TabBase;
+    delete resourceListLeft;
+    delete setMediaBottom;
 }
 
 void Meger2Content::on_label_max_click()
@@ -114,4 +125,32 @@ void Meger2Content::paintEvent(QPaintEvent *)
 
     meger2TabBase -> resize(320, Meger2_height - 50);
     meger2TabBase -> move(Meger2_width - 320, 50);
+}
+
+void Meger2Content::showSlot(int flag)
+{
+    int Meger2_width = geometry().width();  // 窗口宽度
+    int Meger2_height = geometry().height();  // 窗口高度
+
+    resourceListLeft -> hide();
+    setMediaBottom -> hide();
+
+    switch (flag) {
+    case 111:
+        resourceListLeft -> resize(Meger2_width - 340, Meger2_height - 290);
+        resourceListLeft -> move(10, 60);
+        resourceListLeft -> setStyleSheet("background-color: #3D404D; border:1px solid #585B6A;");
+        resourceListLeft -> show();
+
+        setMediaBottom -> resize(Meger2_width - 320, 190);
+        setMediaBottom -> move(0, Meger2_height - 190);
+        setMediaBottom -> show();
+        break;
+    case 112:
+
+        break;
+    case 113:
+
+        break;
+    }
 }

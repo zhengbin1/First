@@ -7,7 +7,7 @@
 #include <QLabel>
 
 #include "channelmanagetab.h"
-#include "setmediatab.h"
+#include "setmedia_tab.h"
 #include "setservertab.h"
 
 
@@ -33,6 +33,7 @@ private:
     SetServerTab *setServerTab;
 
 signals:
+    void showSignal(int);
 
 private slots:
     void LinkActivated(QString);

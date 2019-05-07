@@ -42,12 +42,14 @@ SOURCES += \
     meger2content.cpp \
     meger2tabbase.cpp \
     setservertab.cpp \
-    setmediatab.cpp \
     channelmanagetab.cpp \
     resourcelist.cpp \
     programattribute.cpp \
     mediaattribute.cpp \
-    refreshbutton.cpp
+    refreshbutton.cpp \
+    resourcelist_left.cpp \
+    setmedia_tab.cpp \
+    setmedia_bottom.cpp
 
 HEADERS += \
         meger2_main.h \
@@ -65,12 +67,14 @@ HEADERS += \
     meger2content.h \
     meger2tabbase.h \
     setservertab.h \
-    setmediatab.h \
     channelmanagetab.h \
     resourcelist.h \
     programattribute.h \
     mediaattribute.h \
-    refreshbutton.h
+    refreshbutton.h \
+    resourcelist_left.h \
+    setmedia_tab.h \
+    setmedia_bottom.h
 
 FORMS += \
         meger2_main.ui \

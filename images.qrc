@@ -5,5 +5,8 @@
         <file>source/images/delete.png</file>
         <file>source/images/edit.png</file>
         <file>source/images/refresh.png</file>
+        <file>source/images/next.png</file>
+        <file>source/images/pause.png</file>
+        <file>source/images/play.png</file>
     </qresource>
 </RCC>

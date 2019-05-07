@@ -31,6 +31,7 @@ private:
     MediaAttribute *mediaAttributeTab;
 
 signals:
+    void showSignal(int);
 
 public slots:
     void LinkActivated(QString);

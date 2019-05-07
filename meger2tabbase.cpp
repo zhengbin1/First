@@ -1,5 +1,5 @@
 #include "meger2tabbase.h"
-#include <QDebug>
+
 
 Meger2TabBase::Meger2TabBase(QWidget *parent) : QWidget(parent)
 {
@@ -40,6 +40,10 @@ Meger2TabBase::Meger2TabBase(QWidget *parent) : QWidget(parent)
     channelManageTab -> hide();
 
     tabnum = 10;
+
+    connect(setServerTab, SIGNAL(showSignal(int)), this, SIGNAL(showSignal(int)));
+    connect(setMediaTab, SIGNAL(showSignal(int)), this, SIGNAL(showSignal(int)));
+    connect(channelManageTab, SIGNAL(showSignal(int)), this, SIGNAL(showSignal(int)));
 }
 
 void Meger2TabBase::paintEvent(QPaintEvent *e)

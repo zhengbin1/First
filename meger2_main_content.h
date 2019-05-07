@@ -3,7 +3,6 @@
 
 #include <QWidget>
 #include <QLabel>
-#include <QGuiApplication>
 #include <QScreen>
 #include <QStack>
 #include <QPushButton>
@@ -16,6 +15,7 @@ class Meger2_main_content : public QWidget
     Q_OBJECT
 public:
     explicit Meger2_main_content(QWidget *parent = nullptr);
+    ~Meger2_main_content();
 
     void inputServerBlockList();
 

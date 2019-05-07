@@ -50,7 +50,6 @@ Meger2_main::Meger2_main(QWidget *parent) :
 
     QScrollArea *scrollArea = new QScrollArea(this);
     scrollArea -> setFrameShape(QFrame::NoFrame);
-    // scrollArea -> setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Maximum);
     scrollArea -> setWidget(MegerMainContent);
     scrollArea -> resize(Meger2_main_width, Meger2_main_height + 20);
     scrollArea -> move(0, 50);

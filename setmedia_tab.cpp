@@ -1,4 +1,4 @@
-#include "setmediatab.h"
+#include "setmedia_tab.h"
 
 SetMediaTab::SetMediaTab(QWidget *parent) : QWidget(parent)
 {
@@ -11,7 +11,7 @@ SetMediaTab::SetMediaTab(QWidget *parent) : QWidget(parent)
     programAttribute = new QLabel(this);
     mediaAttribute = new QLabel(this);
 
-    resourceList -> setText("<p style=\"line-height:25px;width:80px;height:30px;font-size:14px;text-align:center;\"><a href=\"resourceListTab\" style=\"text-decoration:none;color:#AFB0B6;\">资源列表</a></p>");
+    resourceList -> setText("<p style=\"line-height:25px;width:80px;height:30px;font-size:14px;text-align:center;\"><a href=\"resourceListTab\" style=\"text-decoration:none;color:#FFFFFF;\"><b>资源列表</b></a></p>");
     programAttribute -> setText("<p style=\"line-height:25px;width:80px;height:30px;font-size:14px;text-align:center;\"><a href=\"programAttributeTab\" style=\"text-decoration:none;color:#AFB0B6;\">节目属性</a></p>");
     mediaAttribute -> setText("<p style=\"line-height:25px;width:80px;height:30px;font-size:14px;text-align:center;\"><a href=\"mediaAttributeTab\" style=\"text-decoration:none;color:#AFB0B6;\">媒体属性</a></p>");
 
@@ -63,6 +63,7 @@ void SetMediaTab::paintEvent(QPaintEvent *e)
         resourceListTab -> show();
         programAttributeTab -> hide();
         mediaAttributeTab -> hide();
+        emit showSignal(111);
         break;
     case 11:
         programAttributeTab -> resize(setmediatab_width, setmediatab_height);
@@ -71,6 +72,7 @@ void SetMediaTab::paintEvent(QPaintEvent *e)
         resourceListTab -> hide();
         programAttributeTab -> show();
         mediaAttributeTab -> hide();
+        emit showSignal(112);
         break;
     case 12:
         mediaAttributeTab -> resize(setmediatab_width, setmediatab_height);
@@ -79,6 +81,7 @@ void SetMediaTab::paintEvent(QPaintEvent *e)
         resourceListTab -> hide();
         programAttributeTab -> hide();
         mediaAttributeTab -> show();
+        emit showSignal(113);
         break;
     }
 }

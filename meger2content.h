@@ -9,6 +9,9 @@
 #include "clickablelabel.h"
 #include "labeltitlename.h"
 #include "meger2tabbase.h"
+#include "resourcelist_left.h"
+#include "setmedia_bottom.h"
+
 
 namespace Ui {
 class Meger2Content;
@@ -35,11 +38,16 @@ private:
     ClickableLabel *label_title_close;
 
     Meger2TabBase *meger2TabBase;
+    ResourceListLeft *resourceListLeft;
+    SetMediaBottom *setMediaBottom;
+
 
 public slots:
     void on_label_title_close_click();
     void on_label_max_click();
     void on_label_mini_click();
+
+    void showSlot(int);
 };
 
 #endif // MEGER2CONTENT_H

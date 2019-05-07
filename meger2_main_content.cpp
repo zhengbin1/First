@@ -12,6 +12,11 @@ Meger2_main_content::Meger2_main_content(QWidget *parent) : QWidget(parent)
     Meger2_main_width = parent -> geometry().width();  // 主窗口宽度
 }
 
+Meger2_main_content::~Meger2_main_content()
+{
+    delete add_server;
+}
+
 void Meger2_main_content::recvStringList(QString serverInfo)
 {
 
