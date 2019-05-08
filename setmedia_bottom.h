@@ -4,6 +4,41 @@
 #include <QWidget>
 #include <QStyleOption>
 #include <QPainter>
+#include <QLabel>
+
+
+class BottomWidget : public QWidget
+{
+    Q_OBJECT
+
+public:
+    explicit BottomWidget(QWidget *);
+    ~BottomWidget();
+
+    void paintEvent(QPaintEvent *);
+
+private:
+    QLabel *stopButton;
+    QLabel *playButton;
+    QLabel *nextButton;
+    QLabel *soundButton;
+};
+
+
+class VideoWidget : public QWidget
+{
+    Q_OBJECT
+
+public:
+    explicit VideoWidget(QWidget *);
+    ~VideoWidget();
+
+    void paintEvent(QPaintEvent *);
+
+private:
+    QLabel *title;
+    QLabel *videoIcon;
+};
 
 
 class SetMediaBottom : public QWidget
@@ -16,11 +51,13 @@ public:
     void paintEvent(QPaintEvent *);
 
 private:
-    QWidget *bottomWidget;
+    BottomWidget *bottomWidget;
 
 signals:
 
 public slots:
 };
+
+
 
 #endif // SETMEDIA_BOTTOM_H

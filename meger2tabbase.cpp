@@ -41,9 +41,9 @@ Meger2TabBase::Meger2TabBase(QWidget *parent) : QWidget(parent)
 
     tabnum = 10;
 
-    connect(setServerTab, SIGNAL(showSignal(int)), this, SIGNAL(showSignal(int)));
+    // connect(setServerTab, SIGNAL(showSignal(int)), this, SIGNAL(showSignal(int)));
     connect(setMediaTab, SIGNAL(showSignal(int)), this, SIGNAL(showSignal(int)));
-    connect(channelManageTab, SIGNAL(showSignal(int)), this, SIGNAL(showSignal(int)));
+    // connect(channelManageTab, SIGNAL(showSignal(int)), this, SIGNAL(showSignal(int)));
 }
 
 void Meger2TabBase::paintEvent(QPaintEvent *e)

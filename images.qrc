@@ -6,7 +6,9 @@
         <file>source/images/edit.png</file>
         <file>source/images/refresh.png</file>
         <file>source/images/next.png</file>
-        <file>source/images/pause.png</file>
         <file>source/images/play.png</file>
+        <file>source/images/stop.png</file>
+        <file>source/images/sound.png</file>
+        <file>source/images/video.png</file>
     </qresource>
 </RCC>

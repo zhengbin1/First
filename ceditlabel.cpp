@@ -1,5 +1,4 @@
 #include "ceditlabel.h"
-#include <QtDebug>
 
 CEditLabel::CEditLabel(QWidget *parent) : QWidget(parent)
 {
