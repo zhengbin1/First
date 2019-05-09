@@ -33,11 +33,14 @@ public:
     explicit VideoWidget(QWidget *);
     ~VideoWidget();
 
-    void paintEvent(QPaintEvent *);
+    void setTitleName(QString);
 
 private:
+    void paintEvent(QPaintEvent *);
+
     QLabel *title;
     QLabel *videoIcon;
+    QString titleName;
 };
 
 
@@ -52,6 +55,13 @@ public:
 
 private:
     BottomWidget *bottomWidget;
+    VideoWidget *videoWidget1;
+    VideoWidget *videoWidget2;
+    VideoWidget *videoWidget3;
+    VideoWidget *videoWidget4;
+    VideoWidget *videoWidget5;
+
+    QLabel *addVideo;
 
 signals:
 

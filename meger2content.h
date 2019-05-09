@@ -11,6 +11,7 @@
 #include "meger2tabbase.h"
 #include "resourcelist_left.h"
 #include "setmedia_bottom.h"
+#include "programattribute_left.h"
 
 
 namespace Ui {
@@ -37,8 +38,10 @@ private:
     ClickableLabel *label_title_mini;
     ClickableLabel *label_title_close;
 
-    Meger2TabBase *meger2TabBase;
     ResourceListLeft *resourceListLeft;
+    ProgramAttributeLeft *programAttributeLeft;
+
+    Meger2TabBase *meger2TabBase;
     SetMediaBottom *setMediaBottom;
 
 

@@ -63,8 +63,12 @@ Meger2Content::Meger2Content(QWidget *parent) :
     connect(label_title_close, SIGNAL(clicked()), this, SLOT(on_label_title_close_click()));
 
     meger2TabBase = new Meger2TabBase(this);
+
     resourceListLeft = new ResourceListLeft(this);
     resourceListLeft -> hide();
+
+    programAttributeLeft = new ProgramAttributeLeft(this);
+    programAttributeLeft -> hide();
 
     connect(meger2TabBase, SIGNAL(showSignal(int)), this, SLOT(showSlot(int)));
 
@@ -80,8 +84,10 @@ Meger2Content::~Meger2Content()
     delete label_title_max;
     delete label_title_close;
 
-    delete meger2TabBase;
     delete resourceListLeft;
+    delete programAttributeLeft;
+
+    delete meger2TabBase;
     delete setMediaBottom;
 }
 
@@ -133,7 +139,11 @@ void Meger2Content::showSlot(int flag)
     int Meger2_height = geometry().height();  // 窗口高度
 
     resourceListLeft -> hide();
-    setMediaBottom -> hide();
+    programAttributeLeft -> hide();
+
+    setMediaBottom -> resize(Meger2_width - 320, 190);
+    setMediaBottom -> move(0, Meger2_height - 190);
+    setMediaBottom -> show();
 
     switch (flag) {
     case 111:
@@ -141,12 +151,13 @@ void Meger2Content::showSlot(int flag)
         resourceListLeft -> move(10, 60);
         resourceListLeft -> setStyleSheet("background-color: #3D404D; border:1px solid #585B6A;");
         resourceListLeft -> show();
-
-        setMediaBottom -> resize(Meger2_width - 320, 190);
-        setMediaBottom -> move(0, Meger2_height - 190);
-        setMediaBottom -> show();
         break;
+
     case 112:
+        programAttributeLeft -> resize(Meger2_width - 340, Meger2_height - 290);
+        programAttributeLeft -> move(10, 60);
+        programAttributeLeft -> setStyleSheet("background-color: #3D404D; border:1px solid #585B6A;");
+        programAttributeLeft -> show();
 
         break;
     case 113:

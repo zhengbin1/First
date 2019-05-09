@@ -49,7 +49,8 @@ SOURCES += \
     refreshbutton.cpp \
     resourcelist_left.cpp \
     setmedia_tab.cpp \
-    setmedia_bottom.cpp
+    setmedia_bottom.cpp \
+    programattribute_left.cpp
 
 HEADERS += \
         meger2_main.h \
@@ -74,7 +75,8 @@ HEADERS += \
     refreshbutton.h \
     resourcelist_left.h \
     setmedia_tab.h \
-    setmedia_bottom.h
+    setmedia_bottom.h \
+    programattribute_left.h
 
 FORMS += \
         meger2_main.ui \
