@@ -24,4 +24,16 @@ void ProgramAttributeLeft::paintEvent(QPaintEvent *e)
     QPainter painter1(this);
     painter1.setPen(QPen(QColor(126, 130, 142), 1));
     painter1.drawLine(0, height / 4, width, height / 4);
+
+    QPainter painter2(this);
+    painter2.setPen(QPen(QColor(126, 130, 142), 1));
+    painter2.drawLine(0, height / 5 * 3, width, height / 5 * 3);
+
+    QPainter painter3(this);
+    painter3.setPen(QPen(QColor(126, 130, 142), 1));
+    painter3.drawLine(width / 5, 0, width / 5, height);
+
+    QPainter painter4(this);
+    painter4.setPen(QPen(QColor(126, 130, 142), 1));
+    painter4.drawLine(width / 2, 0, width / 2, height);
 }
