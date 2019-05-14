@@ -3,25 +3,49 @@
 
 VideoItem::VideoItem(QWidget *parent) : QWidget(parent)
 {
+    m_parent = parent;
+
     videoName = new QLabel(this);
-    videoName -> resize(100, 50);
 
     stop_unselected = new QLabel(this);
     QPixmap Pixmap1(":/images/source/images/stop_unselected.png");
     stop_unselected -> setPixmap(Pixmap1);
     stop_unselected -> resize(Pixmap1.size());
 
-    int parentW = parent -> geometry().width();  // 父窗口宽度
-    int parentH = parent -> geometry().height();  // 父窗口高度
+    cycle_unselected = new QLabel(this);
+    QPixmap Pixmap2(":/images/source/images/cycle_unselected.png");
+    cycle_unselected -> setPixmap(Pixmap2);
+    cycle_unselected -> resize(Pixmap2.size());
 
-    resize(parentW, 50);
+    order_unselected = new QLabel(this);
+    QPixmap Pixmap3(":/images/source/images/order_unselected.png");
+    order_unselected -> setPixmap(Pixmap3);
+    order_unselected -> resize(Pixmap3.size());
+
+
+    hBoxLayout = new QHBoxLayout(this);
+    hBoxLayout -> addWidget(videoName);
+    hBoxLayout -> addWidget(stop_unselected);
+    hBoxLayout -> addWidget(cycle_unselected);
+    hBoxLayout -> addWidget(order_unselected);
+
+    hBoxLayout ->setStretchFactor(videoName, 5);
+    hBoxLayout ->setStretchFactor(stop_unselected, 1);
+    hBoxLayout ->setStretchFactor(cycle_unselected, 1);
+    hBoxLayout ->setStretchFactor(order_unselected, 1);
+
+    this -> setLayout(hBoxLayout);
 }
 
 VideoItem::~VideoItem()
 {
+    delete hBoxLayout;
+
     delete videoName;
 
     delete stop_unselected;
+    delete cycle_unselected;
+    delete order_unselected;
 }
 
 void VideoItem::paintEvent(QPaintEvent *e)
@@ -32,14 +56,15 @@ void VideoItem::paintEvent(QPaintEvent *e)
     style() -> drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
     QWidget::paintEvent(e);
 
+    int parentW = m_parent -> geometry().width();  // 父窗口宽度
+    int parentH = m_parent -> geometry().height();  // 父窗口高度
 
-    videoName -> move(0, 0);
-    stop_unselected -> move(100, 0);
+    resize(parentW, 50);
 }
 
 void VideoItem::setItemName(QString name)
 {
-    videoName -> setText("<p style=\"line-height:35px;height:50px;color:#FFFFFF;font-size:13px;text-align:center;\">" + name + "<p>");
+    videoName -> setText("<p style=\"line-height:25px;height:25px;color:#FFFFFF;font-size:13px;text-align:center;\">" + name + "<p>");
 }
 
 

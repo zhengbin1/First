@@ -1,4 +1,5 @@
 #include "setmedia_tab.h"
+#include <QDebug>
 
 SetMediaTab::SetMediaTab(QWidget *parent) : QWidget(parent)
 {

@@ -5,6 +5,7 @@
 #include <QStyleOption>
 #include <QPainter>
 #include <QLabel>
+#include <QHBoxLayout>
 
 
 class VideoItem : public QWidget
@@ -21,6 +22,12 @@ public:
 private:
     QLabel *videoName;
     QLabel *stop_unselected;
+    QLabel *cycle_unselected;
+    QLabel *order_unselected;
+
+    QHBoxLayout *hBoxLayout;
+
+    QWidget *m_parent;
 
 signals:
 

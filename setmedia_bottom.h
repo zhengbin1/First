@@ -5,6 +5,8 @@
 #include <QStyleOption>
 #include <QPainter>
 #include <QLabel>
+#include <QList>
+#include <QScrollArea>
 
 
 class BottomWidget : public QWidget
@@ -52,20 +54,22 @@ public:
     ~SetMediaBottom();
 
     void paintEvent(QPaintEvent *);
+    void resizeEvent(QResizeEvent *);
 
 private:
+    QWidget *topWidget;
     BottomWidget *bottomWidget;
-    VideoWidget *videoWidget1;
-    VideoWidget *videoWidget2;
-    VideoWidget *videoWidget3;
-    VideoWidget *videoWidget4;
-    VideoWidget *videoWidget5;
+    QScrollArea *scrollArea;
 
     QLabel *addVideo;
+    QList<VideoWidget *> VideoList;
+
+    int m_video_count;
 
 signals:
 
 public slots:
+    void addVideoW(QString);
 };
 
 

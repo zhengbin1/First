@@ -1,38 +1,42 @@
 #include "setmedia_bottom.h"
-
+#include <QHBoxLayout>
+#include <QDebug>
 
 SetMediaBottom::SetMediaBottom(QWidget *parent) : QWidget(parent)
 {
     setStyleSheet("background-color: #242631;");
 
+    topWidget = new QWidget(this);
+    topWidget -> resize(120, 120);
+    topWidget -> move(0, 0);
 
     bottomWidget = new BottomWidget(this);
-    videoWidget1 = new VideoWidget(this);
-    videoWidget1 -> setTitleName("节目1");
-    videoWidget2 = new VideoWidget(this);
-    videoWidget2 -> setTitleName("节目2");
-    videoWidget3 = new VideoWidget(this);
-    videoWidget3 -> setTitleName("节目3");
-    videoWidget4 = new VideoWidget(this);
-    videoWidget4 -> setTitleName("节目4");
-    videoWidget5 = new VideoWidget(this);
-    videoWidget5 -> setTitleName("节目5");
 
-    addVideo = new QLabel(this);
+    addVideo = new QLabel(topWidget);
     addVideo -> resize(120,120);
     addVideo -> setStyleSheet("background-color: #000000;");
-    addVideo -> setText("<p style=\"line-height:120px;height:120px;color:#FFFFFF;font-size:90px;text-align:center;\">+<p>");
+    addVideo -> setText("<a href=\"add_video\" style=\"text-decoration:none;\"><p style=\"line-height:120px;height:120px;color:#FFFFFF;font-size:90px;text-align:center;\">+<p></a>");
+
+    connect(addVideo, SIGNAL(linkActivated(QString)), this, SLOT(addVideoW(QString)));
+
+    m_video_count = 1;
+
+    // int width = geometry().width();  // 窗口宽度
+
+    scrollArea = new QScrollArea(this);
+    scrollArea -> setFrameShape(QFrame::NoFrame);
+    scrollArea -> setWidgetResizable(false);
+    scrollArea -> setWidget(topWidget);
 }
 
 SetMediaBottom::~SetMediaBottom()
 {
+    qDeleteAll(VideoList.begin(), VideoList.end());
+
+    delete topWidget;
     delete bottomWidget;
-    delete videoWidget1;
-    delete videoWidget2;
-    delete videoWidget3;
-    delete videoWidget4;
-    delete videoWidget5;
     delete addVideo;
+    delete scrollArea;
 }
 
 void SetMediaBottom::paintEvent(QPaintEvent *e)
@@ -43,21 +47,37 @@ void SetMediaBottom::paintEvent(QPaintEvent *e)
     style() -> drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
     QWidget::paintEvent(e);
 
-    int width = geometry().width();  // 窗口宽度
-    int height = geometry().height();  // 窗口高度
-
-    bottomWidget -> resize(width, 60);
+    bottomWidget -> resize(this -> width(), 60);
     bottomWidget -> move(0, 130);
-
-    videoWidget1 -> move(0, 10);
-    videoWidget2 -> move(120, 10);
-    videoWidget3 -> move(240, 10);
-    videoWidget4 -> move(360, 10);
-    videoWidget5 -> move(480, 10);
-
-    addVideo -> move(600, 10);
 }
 
+void SetMediaBottom::resizeEvent(QResizeEvent *event)
+{
+    scrollArea -> resize(this -> width(), 130);
+    scrollArea -> move(0, 0);
+}
+
+void SetMediaBottom::addVideoW(QString str)
+{
+    VideoWidget *videoWidget = new VideoWidget(topWidget);
+    videoWidget -> setTitleName("节目" + QString::number(m_video_count));
+
+    VideoList.append(videoWidget);
+
+    int list_width = 0;
+
+    m_video_count ++;
+
+    for (int i = 0; i < VideoList.size(); ++i) {
+        VideoWidget *videoWidget = VideoList.at(i);
+        videoWidget -> move(list_width, 10);
+        videoWidget -> show();
+        list_width += 120;
+        topWidget -> resize(list_width + 120, 120);
+    }
+
+    addVideo -> move(list_width, 10);
+}
 
 VideoWidget::VideoWidget(QWidget *parent) : QWidget(parent)
 {
